@@ -1,7 +1,12 @@
 <h1>Provide a URL to shorten</h1>
 
-<form action="">
-	<input type="text" placeholder="Your URL" />
-	<input type="submit" value="Shorten!" />
-</form>
+<%= form_with url: "/sources", method: :post do |form| %>
+<%= text_field_tag :original_url, nil, placeholder: 'Original URL' %>
+<%= form.submit %>
+<% end %>
+
+
+<% if @shortcode %>
+Your shortened url is: <a href="http://localhost:3000/<%= @shortcode %>">myurlshortener.com/<%= @shortcode %></a>
+<% end %>
 
