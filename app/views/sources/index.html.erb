@@ -1,12 +1,26 @@
 <h1>Provide a URL to shorten</h1>
 
+<div>
 <%= form_with url: "/sources", method: :post do |form| %>
 <%= text_field_tag :original_url, nil, placeholder: 'Original URL' %>
 <%= form.submit %>
 <% end %>
-
+</div>
 
 <% if @shortcode %>
-Your shortened url is: <a href="http://localhost:3000/<%= @shortcode %>">myurlshortener.com/<%= @shortcode %></a>
+<p>Your shortened url is: <a href="<%= request.base_url %>/<%= @shortcode %>">myurlshortener.com/<%= @shortcode %></a></p>
+<% end %>
+
+<% unless @all_sources.nil? %>
+<div>
+	<h3>All shortened URLs:</h3>
+	<ul>
+	<% @all_sources.each do |source| %>
+		<li>
+			<a href="<%= source.original_url %>">myurlshortener.com/<%= source.shortened_url %></a>
+		</li>
+	<% end %>
+	</ul>
+</div>
 <% end %>
 

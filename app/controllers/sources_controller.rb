@@ -5,6 +5,7 @@ ALPHABET = ("0".."9").to_a + ("A".."Z").to_a + ("a".."z").to_a
 
 class SourcesController < ApplicationController
   def index
+    @all_sources = Source.all
   end
 
   def show
